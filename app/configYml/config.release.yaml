@@ -1,0 +1,43 @@
+log:
+  level: "info" # trace debug info warn
+  logFormat: "text" # 日志格式 json text
+  isSetReportCaller: true # 显示代码行数 true false
+  output: "output" # 日志输出方式  file output
+  logDir: "./logs"
+  logName: "firefly"
+  max-age: 1 # 日志留存时间 单位: 天
+  max-capacity: 10 #  单个日志的最大容量 单位 M
+  max-count: 10 # 日志保留的最大数量
+  appName: "fireflylog"
+db:
+  default:
+    log:
+      enable: true
+      level: "info"
+      format: "text" # json or text
+      type: "stdout" # stdout or file
+      path: "app.log"
+    write:
+      host: "127.0.0.1"
+      port: "3306"
+      database: go_admin
+      username: root
+      password: 123mysql
+      config: charset=utf8mb4&parseTime=True&loc=Local
+      timeout: 5000  # connect db timeout , unit ms
+      write_time_out: 5000 # write data timeout , unit ms
+      read_time_out: 5000 # read data timeout,unit ms
+      max_idle_conns: 10  # 最大的闲置连接数
+      max_open_conns: 100  # 最大打开连接数
+    read:
+      host: ""
+      port: "3306"
+      db-name: go_admin
+      username: root
+      password: 123mysql
+      config: charset=utf8mb4&parseTime=True&loc=Local
+      timeout: 5000  # connect db timeout , unit ms
+      write_time_out: 5000 # write data timeout , unit ms
+      read_time_out: 5000 # read data timeout,unit ms
+      max_idle_conns: 10  # 最大的闲置连接数
+      max_open_conns: 100  # 最大打开连接数

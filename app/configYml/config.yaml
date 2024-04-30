@@ -1,0 +1,63 @@
+log:
+  level: "info" # trace debug info warn
+  logFormat: "text" # 日志格式 json text
+  isSetReportCaller: true # 显示代码行数 true false
+  output: "output" # 日志输出方式  file output
+  logDir: "./logs"
+  logName: "firefly"
+  max-age: 1 # 日志留存时间 单位: 天
+  max-capacity: 10 #  单个日志的最大容量 单位 M
+  max-count: 10 # 日志保留的最大数量
+  appName: "fireflylog"
+db:
+  default:
+    log:
+      enable: true  # 数据库日志开关   true false
+      level: "info"
+      format: "json" # json or text
+      type: "file" # stdout or file
+      path: "database-firefly.log"
+    write:
+      host: "127.0.0.1"
+      port: "3306"
+      database: go_admin
+      username: root
+      password: 123mysql
+      config: charset=utf8mb4&parseTime=True&loc=Local
+      timeout: 5000  # connect db timeout , unit ms
+      write_time_out: 5000 # write data timeout , unit ms
+      read_time_out: 5000 # read data timeout,unit ms
+      max_idle_conns: 10  # 最大的闲置连接数
+      max_open_conns: 100  # 最大打开连接数
+    read:
+      host: ""
+      port: "3306"
+      db-name: go_admin
+      username: root
+      password: 123mysql
+      config: charset=utf8mb4&parseTime=True&loc=Local
+      timeout: 5000  # connect db timeout , unit ms
+      write_time_out: 5000 # write data timeout , unit ms
+      read_time_out: 5000 # read data timeout,unit ms
+      max_idle_conns: 10  # 最大的闲置连接数
+      max_open_conns: 100  # 最大打开连接数
+system:
+  host: "0.0.0.0"
+  port: 8081
+  env: release # dev ,test,release
+  #  username: A9542BB104FE3F4D562E1D275E03F5BA
+  #  password: E7BD50567350D19CC16EB84C7EAD0DCC
+  username: admin
+  password: admin
+  JWT_SIGN_KEY: "default"
+  JWT_EXPIRE_TIME: 1440 # 分钟
+#  // 加密用户名密码 md5
+#  // 默认值 feng,feng123456,部署时请修改密码
+web_server_log:
+  enable: true
+  log_id_show_header: true
+  log_path: "logs/access-firefly.log"
+  log_format: "json" # text,json
+  output: "file" # file,stdout
+  skip_paths:
+    - "/favicon.ico"
