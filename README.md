@@ -12,7 +12,7 @@ git init
 git add .
 git commit -m "first commit"
 git branch -M main
-git remote add origin git@github.com:ljzh152535/framework.git
+git remote add origin git@github.com:ljzh152535/go-framework.git
 git push -u origin main
 ```
 

@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 	"github.com/ljzh152535/go-framework/app/global"
-	"github.com/ljzh152535/go-framework/app/model/user"
+	"github.com/ljzh152535/go-framework/app/models/user"
 	"os"
 )
 

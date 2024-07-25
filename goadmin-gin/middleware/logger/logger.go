@@ -321,7 +321,7 @@ func New(conf goadmin_config.WebServerLog, prjEnv string, homeDir string) gin.Ha
 			//c.Request.Header.Set(LogID, logId)
 			//c.Set(LogID, logId)
 		}
-
+		c.Set(LogID, logId) // 设置上下文
 		strBody := ""
 		var blw bodyLogWriter
 		blw = bodyLogWriter{bodyBuf: bytes.NewBufferString(""), ResponseWriter: c.Writer}
