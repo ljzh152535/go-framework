@@ -36,5 +36,5 @@ go get -u github.com/ljzh152535/go-framework
 ### 添加tag
 ```
 git tag v0.0.1
-git push origin v0.0.1
+git push origin v0.0.2
 ```
