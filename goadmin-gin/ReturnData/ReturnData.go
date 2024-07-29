@@ -42,7 +42,7 @@ func newReturnData(status int, message string, data map[string]interface{}) Retu
 }
 
 // 获取请求入口的数据
-func GetRequestInfo(r *gin.Context, info interface{}) (err error) {
+func GetRequestInfo(r *gin.Context, info any) (err error) {
 	// 首先获取请求的类型
 	requestMethod := r.Request.Method
 	if requestMethod == "GET" {
