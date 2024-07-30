@@ -1,7 +1,9 @@
 package model
 
 import (
-	"gorm.io/gorm"
+	"database/sql/driver"
+	"fmt"
+	"strings"
 	"time"
 )
 
@@ -33,9 +35,44 @@ type DBItem struct {
 	Log   DBLog      `yaml:"log"`
 }
 
+//type GVA_MODEL struct {
+//	ID        uint           `json:"id" gorm:"primarykey" form:"id"` // 主键ID
+//	CreatedAt time.Time      `json:"createdAt"`                      // 创建时间
+//	UpdatedAt time.Time      `json:"updatedAt"`                      // 更新时间
+//	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`                 // 删除时间
+//}
+
 type GVA_MODEL struct {
-	ID        uint           `json:"id" gorm:"primarykey" form:"id"` // 主键ID
-	CreatedAt time.Time      `json:"createdAt"`                      // 创建时间
-	UpdatedAt time.Time      `json:"updatedAt"`                      // 更新时间
-	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`                 // 删除时间
+	ID        uint      `json:"id" gorm:"primarykey" form:"id"` // 主键ID
+	CreatedAt LocalTime `json:"createdAt"`                      // 创建时间
+	UpdatedAt LocalTime `json:"updatedAt"`                      // 更新时间
+	DeletedAt LocalTime `gorm:"index" json:"-"`                 // 删除时间
+}
+
+// LocalTime 别名
+type LocalTime time.Time
+
+func (t LocalTime) MarshalJSON() ([]byte, error) {
+	tTime := time.Time(t)
+	return []byte(fmt.Sprintf("\"%v\"", tTime.Format("2006-01-02 15:04:05"))), nil
+}
+
+func (t LocalTime) Value() (driver.Value, error) {
+	// LocalTime 转换成 time.Time 类型
+	tTime := time.Time(t)
+	return tTime.Format("2006-01-02 15:04:05"), nil
+}
+
+func (t *LocalTime) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" {
+		return nil
+	}
+	var err error
+	//前端接收的时间字符串
+	str := string(data)
+	//去除接收的str收尾多余的"
+	timeStr := strings.Trim(str, "\"")
+	t1, err := time.Parse("2006-01-02 15:04:05", timeStr)
+	*t = LocalTime(t1)
+	return err
 }
