@@ -3,7 +3,8 @@ package model
 import (
 	"database/sql/driver"
 	"fmt"
-	"strings"
+	"github.com/pkg/errors"
+	"gorm.io/gorm"
 	"time"
 )
 
@@ -43,36 +44,40 @@ type DBItem struct {
 //}
 
 type GVA_MODEL struct {
-	ID        uint      `json:"id" gorm:"primarykey" form:"id"` // 主键ID
-	CreatedAt LocalTime `json:"createdAt"`                      // 创建时间
-	UpdatedAt LocalTime `json:"updatedAt"`                      // 更新时间
-	DeletedAt LocalTime `gorm:"index" json:"-"`                 // 删除时间
+	ID        uint           `json:"id" gorm:"primarykey" form:"id"` // 主键ID
+	CreatedAt CustomTime     `json:"createdAt"`                      // 创建时间
+	UpdatedAt CustomTime     `json:"updatedAt"`                      // 更新时间
+	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`                 // 删除时间
 }
 
-// LocalTime 别名
-type LocalTime time.Time
+type CustomTime time.Time
 
-func (t LocalTime) MarshalJSON() ([]byte, error) {
-	tTime := time.Time(t)
-	return []byte(fmt.Sprintf("\"%v\"", tTime.Format("2006-01-02 15:04:05"))), nil
-}
+// GORM Scanner 接口, 从数据库读取到类型
+func (t *CustomTime) Scan(value any) error {
 
-func (t LocalTime) Value() (driver.Value, error) {
-	// LocalTime 转换成 time.Time 类型
-	tTime := time.Time(t)
-	return tTime.Format("2006-01-02 15:04:05"), nil
-}
-
-func (t *LocalTime) UnmarshalJSON(data []byte) error {
-	if string(data) == "null" {
+	if v, ok := value.(time.Time); !ok {
+		return errors.Errorf("failed to unmarshal CustomTime value: %v", value)
+	} else {
+		*t = CustomTime(v)
 		return nil
 	}
-	var err error
-	//前端接收的时间字符串
-	str := string(data)
-	//去除接收的str收尾多余的"
-	timeStr := strings.Trim(str, "\"")
-	t1, err := time.Parse("2006-01-02 15:04:05", timeStr)
-	*t = LocalTime(t1)
-	return err
+}
+
+// GORM Valuer 接口, 保存到数据库
+func (t CustomTime) Value() (driver.Value, error) {
+	if time.Time(t).IsZero() {
+		return nil, nil
+	}
+	return time.Time(t), nil
+}
+
+// JSON Marshal接口，CustomTime结构体转换为json字符串
+func (t *CustomTime) MarshalJSON() ([]byte, error) {
+	t2 := time.Time(*t)
+	return []byte(fmt.Sprintf(`"%v"`, t2.Format("2006-01-02 15:04:05"))), nil
+}
+
+// fmt.Printf, 【可选方法】
+func (t CustomTime) String() string {
+	return time.Time(t).Format("2006-01-02 15:04:05")
 }
