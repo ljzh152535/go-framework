@@ -7,7 +7,7 @@ import (
 )
 
 // 创建目录
-func createDir(path string) error {
+func CreateDir(path string) error {
 	// 创建单个目录
 	err := os.Mkdir(path, os.ModePerm)
 	if err != nil {
@@ -47,7 +47,7 @@ func AddFolder(folderPath string) (res string, err error) {
 	if exists {
 		return "目录已存在", errors.New("目录已存在")
 	} else {
-		err = createDir(folderPath)
+		err = CreateDir(folderPath)
 		if err != nil {
 			return "创建目录失败", err
 		}
