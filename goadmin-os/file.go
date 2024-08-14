@@ -9,7 +9,7 @@ import (
 )
 
 // 创建文件
-func createFile(path string) (*os.File, error) {
+func CreateFile(path string) (*os.File, error) {
 	f, err := os.Create(path)
 	if err != nil {
 		return nil, err
