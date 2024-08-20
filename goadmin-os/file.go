@@ -28,7 +28,8 @@ func AddFile(filePath string) (res string, err error) {
 	if exists {
 		return "文件已存在", errors.New("文件已存在")
 	} else {
-		_, err = CreateFile(filePath)
+		f, err := CreateFile(filePath)
+		defer f.Close()
 		if err != nil {
 			return "创建文件失败", err
 		}

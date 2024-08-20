@@ -54,3 +54,35 @@ func AddFolder(folderPath string) (res string, err error) {
 		return "创建目录成功", nil
 	}
 }
+
+type Folders struct {
+	Name string `json:"name"`
+	//Path string `json:"path"`
+}
+
+func ListDirs(path string, isDir bool) ([]Folders, error) {
+	dirInfos, err := os.ReadDir(path)
+	if err != nil {
+		return nil, err
+	}
+	var folders []Folders
+
+	for _, dirInfo := range dirInfos {
+		var folder Folders
+		folder.Name = dirInfo.Name()
+		if dirInfo.IsDir() {
+			if isDir {
+				folders = append(folders, folder)
+			}
+			continue
+		} else {
+			if isDir {
+				continue
+			}
+			folders = append(folders, folder)
+		}
+
+	}
+
+	return folders, nil
+}
