@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="045534de-94c5-4414-b8f5-efc3b29cc448" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/goadmin-supervisor/processcontrol.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-supervisor/processlogging.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goadmin-supervisor/statuscontrol.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-supervisor/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goadmin-linux/telnet/telnet.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-linux/telnet/telnet.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +56,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/necessary/code/Program/admin/admin-backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/necessary/code/Program/myadmin/admin-backend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
