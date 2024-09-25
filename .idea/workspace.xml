@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="045534de-94c5-4414-b8f5-efc3b29cc448" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goadmin-linux/telnet/telnet.go" beforeDir="false" afterPath="$PROJECT_DIR$/goadmin-linux/telnet/telnet.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -49,18 +49,18 @@ func CheckPort(ip_port string) string {
 	now := time.Now().Format("2006-01-02 15:04:05")
 	//fmt.Println("ip_port", ip_port)
 	if len(ip_port) < 1 {
-		return fmt.Sprintln("["+now+"]", "请输入ip和端口")
+		return fmt.Sprint("["+now+"]", "请输入ip和端口")
 	}
 	// 检测端口
 	conn, err := net.DialTimeout("tcp", ip_port, 1*time.Second)
 	if err != nil {
-		return fmt.Sprintln("["+now+"]", ip_port, "端口未开启(fail)!", err)
+		return fmt.Sprint("["+now+"]", ip_port, "端口未开启(fail)!", err)
 	} else {
 		if conn != nil {
-			return fmt.Sprintln("["+now+"]", ip_port, "端口已开启(success)!")
+			return fmt.Sprint("["+now+"]", ip_port, "端口已开启(success)!")
 			conn.Close()
 		} else {
-			return fmt.Sprintln("["+now+"]", ip_port, "端口未开启(fail)!", err)
+			return fmt.Sprint("["+now+"]", ip_port, "端口未开启(fail)!", err)
 		}
 	}
 	return ""
