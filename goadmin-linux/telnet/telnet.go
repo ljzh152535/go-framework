@@ -46,7 +46,7 @@ func GetIpPort() string {
 
 // 检测端口
 func CheckPort(ip_port string) string {
-	now := time.Now().Format("2006-01-02 15:04:05")
+	//now := time.Now().Format("2006-01-02 15:04:05")
 	//fmt.Println("ip_port", ip_port)
 	if len(ip_port) < 1 {
 		return fmt.Sprint("请输入ip和端口")
