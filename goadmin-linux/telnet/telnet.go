@@ -53,11 +53,11 @@ func CheckPort(ip_port string) string {
 	}
 	// 检测端口
 	conn, err := net.DialTimeout("tcp", ip_port, 1*time.Second)
-	defer conn.Close()
 	if err != nil {
 		return fmt.Sprint(ip_port, "端口未开启(fail)!", err)
 	} else {
 		if conn != nil {
+			defer conn.Close()
 			return fmt.Sprint(ip_port, ",", conn.RemoteAddr(), "端口已开启(success)!")
 		} else {
 			return fmt.Sprint(ip_port, "端口未开启(fail)!", err)
