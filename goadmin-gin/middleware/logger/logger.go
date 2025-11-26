@@ -94,12 +94,8 @@ type LogFormatterParams struct {
 	// BodySize is the size of the Response Body
 	BodySize int
 	// Keys are the keys set on the request's context.
-<<<<<<< HEAD
 	Keys map[any]any
-=======
-	Keys map[string]any
->>>>>>> a222c9a8d5e9e4a6b4a73bd025c06925afbaffa3
-
+	
 	ResponseData interface{}
 }
 
